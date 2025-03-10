@@ -468,7 +468,7 @@ class DashboardApp(QMainWindow):
 
     def gotoCreateWallet(self):
         """Navigates to the create wallet screen."""
-        self.stack.setCurrentIndex(1)
+        self.animate_screen_transition(self.createWalletScreen)
 
     def generateSeedPhrase(self):
         """Generates a new seed phrase and navigates to the display screen."""
@@ -484,7 +484,7 @@ class DashboardApp(QMainWindow):
             self.private_key = pk
             self.seedDisplayScreen.seed_phrase = self.seed_phrase
             self.seedDisplayScreen.layout().itemAt(1).widget().setText(self.seed_phrase)
-            self.stack.setCurrentIndex(2)
+            self.animate_screen_transition(self.seedDisplayScreen)
         except WalletError as e:
             QMessageBox.critical(self, "Wallet Error", str(e))
         finally:
@@ -501,7 +501,7 @@ class DashboardApp(QMainWindow):
         self.seedConfirmScreen = SeedPhraseConfirmationScreen(expected)
         self.seedConfirmScreen.btn_verify.clicked.connect(self.verifySeedPhrase)
         self.stack.addWidget(self.seedConfirmScreen)
-        self.stack.setCurrentIndex(3)
+        self.animate_screen_transition(self.seedConfirmScreen)
 
     def verifySeedPhrase(self):
         """Verifies the entered seed phrase against the generated one."""
@@ -515,7 +515,7 @@ class DashboardApp(QMainWindow):
 
     def gotoSetPassword(self):
         """Navigates to the set password screen."""
-        self.stack.setCurrentIndex(4)
+        self.animate_screen_transition(self.setPasswordScreen)
 
     def setPasswordAndComplete(self):
         """Sets the PIN password, encrypts wallet data, and completes wallet creation."""
@@ -540,7 +540,7 @@ class DashboardApp(QMainWindow):
         self.wallet_data = self.storage_manager.load_wallet_data()
         self.pin_verified = True
         self.settings_button.setEnabled(True) # Enable settings button after wallet creation
-        self.stack.setCurrentIndex(5)
+        self.animate_screen_transition(self.successScreen)
 
     def change_pin_code(self, new_pin):
         """Changes the PIN code and updates secure storage."""
@@ -580,12 +580,12 @@ class DashboardApp(QMainWindow):
 
     def gotoDashboard(self):
         """Navigates to the dashboard screen."""
-        self.stack.setCurrentIndex(5)
+        self.animate_screen_transition(self.dashboardScreen)
         self.update_dashboard_info()
 
     def gotoImportWallet(self):
         """Navigates to the import wallet screen."""
-        self.stack.setCurrentIndex(6)
+        self.animate_screen_transition(self.importWalletScreen)
 
     def importWalletFromSeed(self):
         """Imports wallet from seed phrase."""
@@ -705,7 +705,7 @@ class DashboardApp(QMainWindow):
 
     def gotoSettings(self):
         """Navigates to the settings screen."""
-        self.stack.setCurrentIndex(7)
+        self.animate_screen_transition(self.settingsScreen)
 
     def export_private_key_action(self):
         """Exports private key to a file after PIN verification."""
@@ -830,8 +830,8 @@ class DashboardApp(QMainWindow):
             self.price_label.setText("ETH Price: Error")
             print(f"Error fetching ETH price: {e}") # Log the error for debugging
 
-    def animate_screen_transition(self, next_screen): # Unused, kept for potential future screen transitions
-        """Animates screen transitions (unused, kept for potential future use)."""
+    def animate_screen_transition(self, next_screen):
+        """Animates screen transitions."""
         # First change to the next screen
         self.stack.setCurrentWidget(next_screen)
 
@@ -881,7 +881,7 @@ class DashboardApp(QMainWindow):
 
     def gotoTransactions(self):
         """Navigates to the transactions screen."""
-        self.stack.setCurrentIndex(9)
+        self.animate_screen_transition(self.transactionsScreen)
         self.fetch_transaction_history()
 
     def fetch_transaction_history(self):
