@@ -11,7 +11,7 @@ from PySide6.QtGui import (
 )
 from PySide6 import QtSvg
 
-from wallet.constants import PRIMARY_BLUE, ACCENT_BLUE, TEXT_COLOR, TITLE_TEXT_COLOR, BUTTON_RADIUS, WIDGET_RADIUS, FONT_FAMILY, LIGHT_BLUE_BACKGROUND, IMG_FOLDER
+from wallet.constants import PRIMARY_BLUE, ACCENT_BLUE, TEXT_COLOR, TITLE_TEXT_COLOR, BUTTON_RADIUS, WIDGET_RADIUS, FONT_FAMILY, IMG_FOLDER
 
 
 # --- Image Loading and Scaling ---

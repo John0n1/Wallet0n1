@@ -1,4 +1,3 @@
-
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtWidgets import (
      QVBoxLayout, QHBoxLayout,
@@ -19,8 +18,43 @@ import qrcode
 from web3 import Web3
 
 from wallet.constants import LIGHT_BLUE_BACKGROUND, TEXT_COLOR, TITLE_TEXT_COLOR, ACCENT_BLUE, IMG_FOLDER, WIDGET_RADIUS
-from ui_components import RoundedButton, SecondaryButton, HeadlineLabel, BodyLabel, SeedPhraseBox, RoundedLineEdit, RoundedTextEdit, load_and_scale_image
+from wallet.ui_components import RoundedButton, SecondaryButton, HeadlineLabel, BodyLabel, SeedPhraseBox, RoundedLineEdit, RoundedTextEdit, load_and_scale_image
 from security import verify_pin_hash
+
+from PySide6.QtCore import Qt, QAbstractTableModel
+
+class TransactionTableModel(QAbstractTableModel):
+    def __init__(self, transactions=None, parent=None):
+        super().__init__(parent)
+        self.transactions = transactions or []
+        self.headers = ["TxHash", "Block", "From", "To", "Value", "Timestamp"]
+
+    def rowCount(self, parent=None):
+        return len(self.transactions)
+
+    def columnCount(self, parent=None):
+        return len(self.headers)
+
+    def data(self, index, role=Qt.DisplayRole):
+        if not index.isValid():
+            return None
+        if role == Qt.DisplayRole:
+            tx = self.transactions[index.row()]
+            # Map header to key (lowercase)
+            key = self.headers[index.column()].lower()
+            return tx.get(key, "")
+        return None
+
+    def headerData(self, section, orientation, role=Qt.DisplayRole):
+        if orientation == Qt.Horizontal and role == Qt.DisplayRole:
+            if 0 <= section < len(self.headers):
+                return self.headers[section]
+        return super().headerData(section, orientation, role)
+
+    def setTransactions(self, transactions):
+        self.beginResetModel()
+        self.transactions = transactions
+        self.endResetModel()
 
 # --- QR Code Generation ---
 BACKGROUND_COLOR = LIGHT_BLUE_BACKGROUND

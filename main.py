@@ -30,8 +30,8 @@ from typing import List, Dict
 from wallet.constants import  ETHERSCAN_API_KEY, LIGHT_BLUE_BACKGROUND, TEXT_COLOR, WALLET_DATA_SERVICE_NAME, WALLET_DATA_ACCOUNT_NAME, WalletError, NetworkError, EncryptionError, StorageError, InvalidInputError
 from security import derive_fernet_key_from_pin, encrypt_data, decrypt_data, hash_pin, verify_pin_hash, SecureStorageManager
 from wallet.blockchain import get_eth_balance, get_wallet_address, create_new_wallet, send_eth_transaction
-from ui_components import RoundedButton, SecondaryButton, HeadlineLabel, BodyLabel,  RoundedLineEdit, load_and_scale_image, QRCodeLabel, AddressDropdown
-from ui_screens import WelcomeScreen, CreateWalletScreen, SeedPhraseDisplayScreen, SeedPhraseConfirmationScreen, SetPasswordScreen, generate_qr_code, WalletCreationSuccessScreen, SettingsScreen, ImportWalletScreen, SendEthDialog, TransactionTableModel
+from wallet.ui_components import RoundedButton, SecondaryButton, HeadlineLabel, BodyLabel,  RoundedLineEdit, load_and_scale_image, QRCodeLabel, AddressDropdown
+from wallet.ui_screens import WelcomeScreen, CreateWalletScreen, SeedPhraseDisplayScreen, SeedPhraseConfirmationScreen, SetPasswordScreen, generate_qr_code, WalletCreationSuccessScreen, SettingsScreen, ImportWalletScreen, SendEthDialog, TransactionTableModel
 from etherscan_api import EtherscanAPI
 Account.enable_unaudited_hdwallet_features()
 
@@ -807,7 +807,7 @@ class DashboardApp(QMainWindow):
         dialog.setStyleSheet(f"background-color: {LIGHT_BLUE_BACKGROUND}; color: {TEXT_COLOR};")
         dialog.setFixedSize(400,400)
         layout = QVBoxLayout()
-        about_label = BodyLabel("Wallet0n1 –– Simplicity - Security - Privacy\nVersion 1.0.0\nReady for the Business Expo!")
+        about_label = BodyLabel("Wallet0n1 –– Simplicity - Security - Privacy\nVersion 1.0.0\nContact: john@mitander.io")
         about_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         ok_btn = RoundedButton("OK")
         ok_btn.clicked.connect(dialog.accept)

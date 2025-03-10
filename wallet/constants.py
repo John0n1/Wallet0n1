@@ -18,7 +18,7 @@ FONT_FAMILY = "Roboto" # Using Roboto font
 WALLET_DATA_SERVICE_NAME = "PyWalletData"
 WALLET_DATA_ACCOUNT_NAME = "user_wallet"
 
-IMG_FOLDER = "/home/john0n1/wallet/img"  # Specify the image folder path
+IMG_FOLDER = "img"  # Specify the image folder path
 
 # --- Custom Exceptions ---
 class WalletError(Exception):
