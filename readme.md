@@ -1,6 +1,6 @@
 # Wallet0n1 - Simple & Private Ethereum Wallet
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
 [![PySide6](https://img.shields.io/badge/PySide6-6.x-brightgreen.svg?style=flat-square&logo=qt&logoColor=white)](https://www.pyside.org/)
 
 **Wallet0n1** is a simple and secure desktop Ethereum wallet built with Python and PySide6. Focused on providing a user-friendly experience while prioritizing security and privacy, it allows you to manage your Ethereum assets the way you want.
